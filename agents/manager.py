@@ -35,6 +35,7 @@ class Manager:
         victory = 0
         defeat = 0
         tie = 0
+        dirt = 0
         for _ in range(n_test):
             room = RoomEnvironment(
                 self.n_rows,
@@ -52,12 +53,15 @@ class Manager:
                 total_free_cells = room.n_dirts + room.free
                 if (room.n_dirts / total_free_cells) * 100 >= 40:
                     defeat += 1
+                    dirt += room.n_dirts
                     break
                 if room.is_clean():
                     victory += 1
+                    dirt += room.n_dirts
                     break
                 if room.time == room.random_time * 100:
                     tie += 1
+                    dirt += room.n_dirts
                     break
                 room.next_step()
-            yield StatisticsModel(victory, defeat, tie)
+            yield StatisticsModel(victory, defeat, tie, dirt / n_test)
