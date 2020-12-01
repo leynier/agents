@@ -77,7 +77,8 @@ class RoomEnvironment:
                 return
         elif action == RobotAction.DropBaby:
             if self.matrix[robot.x][robot.y] != Cell.Dirty:
-                cast(BabyAgent, robot.baby).robot = None
+                if robot.baby is not None:
+                    cast(BabyAgent, robot.baby).robot = None
                 robot.baby = None
             return
         elif (

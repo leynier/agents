@@ -35,7 +35,7 @@ def model_reflex(n: int = 30):
 @app.command()
 def random(n: int = 30):
     manager = Manager(
-        5,
+        15,
         15,
         3,
         5,
